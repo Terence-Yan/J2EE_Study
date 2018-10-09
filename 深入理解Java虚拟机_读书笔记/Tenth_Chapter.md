@@ -2,10 +2,12 @@
 A(nswer)：java语言的“编译期”其实是一段“不确定”的操作过程，因为它可能是指一个前端编译器(其实叫“编译器的前端”更准确一些)把 *.java 文件
 转换成 *.class 文件的过程；也可能是指虚拟机的后端运行期编译器(JIT编译器，Just In Time Compiler)把字节码转换成机器码的过程；还可能是
 指使用静态提前编译器(AOT编译器，Ahead Of Time Compiler)直接把 *.java 文件编译成本地机器码的过程。
+  ```
   下面列举了这3类编译过程中一些比较有代表性的编译器：
   (1).前端编译器：Sun 的 Javac、Eclipse JDT 中的增量式编译器(ECJ);
   (2).JIT编译器：HotSpot VM 的 C1、C2 编译器；
   (3).AOT编译器：GUN Compiler for the Java(GCJ)、Excelior JET。
+  ```
 
 注：以下文字中提到“编译期”和“编译器”都仅限于第一类编译过程
 #### 2.Javac编译器对代码的运行效率是否有优化？
