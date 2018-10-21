@@ -1,18 +1,18 @@
-1.Spring诞生的背景
+#### 1.Spring诞生的背景
 A(nswer)：在诞生之初，创建Spring的主要目的是用来替代更加重量级的企业级Java技术，尤其是EJB（Enterprise JavaBean）。相对于EJB来说，
 Spring提供了更加轻量级和简单的编程模型。它增强了简单老式Java对象(Plain Old Java Object，POJO)的功能，使其具备了之前只有EJB和其他企
 业级Java规范才具有的功能。
 
-2.Spring的核心特性
+#### 2.Spring的核心特性
 A：Spring可以做很多事情，它为企业级开发提供了丰富的功能，但是这些功能的底层都依赖于它的两个核心特性——依赖注入(dependency injection，DI)
 和面向切面编程(aspect-oriented programming, AOP)。
 
-3.Spring简介
+#### 3.Spring简介
 A：Spring是一个开源框架，最早由Rod Johnson创建，并在《Expert One-On-One:J2EE Design and Development》这本著作中进行了介绍。Spring
 是为了解决企业级应用开发的复杂性而创建的，使用Spring可以让简单的JavaBean实现之前只有EJB才能完成的事情。但Spring不仅仅局限于服务器端开发，
 任何Java应用都能在简单性、可测试性和松耦合等方面从Spring中获益。
 
-4.Spring的最根本使命或者其基本理念是什么？
+#### 4.Spring的最根本使命或者其基本理念是什么？
 A：简化Java开发
 
 5.Spring是如何简化Java开发的？
