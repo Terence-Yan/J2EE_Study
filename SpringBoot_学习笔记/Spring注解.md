@@ -14,3 +14,16 @@
 @Quelifier("manager")   //表示将容器中类型为User且名称为manager的Bean对其进行注入赋值
 private User user = null;
 ```
+
+#### 3.@Conditional——条件装配Bean
+```
+问题提出：有时候某些因素会导致一些Bean无法进行初始化，例如，在数据库连接池的配置中漏掉一些配置会造成数据源不能连接上。在这种情况下，IoC容器如果
+还进行数据源的装配，则系统将会抛出异常，导致应用无法继续。这是倒是希望IoC容器不去装配数据源。
+解决方案：为了处理这样的场景，Spring提供了@Conditional注解，配合另外一个接口Condition就可以完成相应的功能了。
+例：
+@Bean(name="dataSource")
+@Conditional(DatabaseConditional.class)
+public DataSource getDataSource(...){...}
+上面的代码中，加入了@Conditional注解，并且配置了DatabaseConditional类，那么这个类就必须实现Condition接口。对于Condition接口则要实现matches方法。
+如果matches方法返回true，则IoC容器就会装配数据库相关的这个Bean，否则就不装配。
+```
