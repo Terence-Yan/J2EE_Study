@@ -27,3 +27,37 @@ public DataSource getDataSource(...){...}
 上面的代码中，加入了@Conditional注解，并且配置了DatabaseConditional类，那么这个类就必须实现Condition接口。对于Condition接口则要实现matches方法。
 如果matches方法返回true，则IoC容器就会装配数据库相关的这个Bean，否则就不装配。
 ```
+
+#### 4.@Scope——Bean的作用域
+```
+在IoC容器最顶级接口BeanFactory中，包括isSingleton 和 isPrototype两个方法。其中，isSingleton方法如果返回true，则Bean在IoC容器中以单例存在，这也是
+Spring IoC容器的默认值；如果isPrototype方法返回true，则当我们每次获取Bean的时候，IoC容器都会创建一个新的Bean，这显然存在很大的不同，这便是Spring 
+Bean的作用域问题。在一般的容器中，Bean都会存在单例(Singleton)和原型(Prototype)两种作用域。JavaEE广泛地使用在互联网中，而在Web容器中，则存在
+页面(page)、请求(request)、会话(session)和应用(application)4种作用域。对于页面(page)，是针对JSP当前页面的作用域，所以Spring是无法支持的。为了
+满足各类的作用域，在Spring的作用域中就存在如下的几种类型：
+    作用域类型              使用范围                               作用域描述
+    singleton             所有Spring应用
+    
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
