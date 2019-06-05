@@ -35,10 +35,23 @@ Spring IoC容器的默认值；如果isPrototype方法返回true，则当我们�
 Bean的作用域问题。在一般的容器中，Bean都会存在单例(Singleton)和原型(Prototype)两种作用域。JavaEE广泛地使用在互联网中，而在Web容器中，则存在
 页面(page)、请求(request)、会话(session)和应用(application)4种作用域。对于页面(page)，是针对JSP当前页面的作用域，所以Spring是无法支持的。为了
 满足各类的作用域，在Spring的作用域中就存在如下的几种类型：
+-----------------------------------------------------------------------------------------------------------------------------------
     作用域类型              使用范围                               作用域描述
-    singleton             所有Spring应用
-    
+    singleton             所有Spring应用                      默认值，IoC容器只存在单例
+    prototype             所有Spring应用                      每当从IoC容器中取出一个Bean，则创建一个新的Bean
+    session               Spring Web应用                      HTTP会话
+    application           Spring Web应用                      Web工程生命周期
+    request               Spring Web应用                      Web工程单次请求
+    globalSession         Spring Web应用                      在一个全局的HTTP Session中，一个Bean定义对应一个实例，实践中基本不使用
+-----------------------------------------------------------------------------------------------------------------------------------
+例：
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class ScopeBean{...}
+注：ConfigurableBeanFactory只能提供单例(SCOPE_SINGLETON)和原型(SCOPE_PROTOTYPE)两种作用域供选择，如果是在Spring MVC环境中，还可以使用
+WebApplicationContext去定义其他作用域，如请求(SCOPE_REQUEST)、会话(SCOPE_SESSION)和应用(SCOPE_APPLICATION)。
 ```
+
 
 
 
