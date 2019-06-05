@@ -52,6 +52,23 @@ public class ScopeBean{...}
 WebApplicationContext去定义其他作用域，如请求(SCOPE_REQUEST)、会话(SCOPE_SESSION)和应用(SCOPE_APPLICATION)。
 ```
 
+#### 5.@Profile——不同环境装配不同的Bean
+* 在Spring中存在两个参数可以提供给我们配置，已修改启动Profile机制，一个是spring.profiles.active，另一个是spring.profiles.default。在这两个
+属性都没有配置的情况下，Spring将不会启动Profile机制，这就意味着被@Profile标注的Bean将不会被Spring装配到IoC容器中。Spring是先判定是否存在
+spring.profiles.active配置后，再去查找spring.profiles.default配置的，所以spring.profiles.active的优先级要大于spring.profiles.default。
+* 在Java启动项目中，只需要如下配置就能够启动Profile机制： `JAVA_OPTS="-Dspring.profiles.active=dev"`。
+* 按照Spring Boot的规则，假设把选项-Dspring.profiles.active配置的值记为{profile}，则它会用application-{profile}.properties文件替代默认的
+application.properties文件，然后启动Spring Boot程序。
+
+#### 6.@ImportResource——引入XML配置Bean
+* 尽管Spring Boot建议使用注解和扫描配置Bean，但是同样的，它并不拒绝使用XML配置Bean，换句话说，我们也可以在Spring Boot中使用XML对Bean进行配置。
+这里需要使用的是注解`@ImportResource`，通过它可以引入对应的XML文件，用以加载Bean。
+* 例：
+```
+...
+@ImportResource(value = {"classpath:spring-bean.xml"})
+public class AppCfg{...}
+```
 
 
 
