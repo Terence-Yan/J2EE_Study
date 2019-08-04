@@ -8,3 +8,5 @@
 
 * <a href="https://docs.oracle.com/en/java/javase/index.html" target="_blank">Java官方文档</a>
 
+* <a href="https://github.com/alibaba/druid/wiki" target="_blank">阿里巴巴Druid数据池官方文档</a>
+
