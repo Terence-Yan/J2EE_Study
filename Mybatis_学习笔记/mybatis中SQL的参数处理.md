@@ -34,4 +34,28 @@ mybatis不做特殊处理：
 #### 3.多个参数——传入POJO或Map对象
 ```
 SQL中获取传入参数值的方式：#{POJO的属性名或Map对象的key}
+如果多个参数不是业务模型中的数据，并且要经常使用，推荐编写一个TO(Transfer Object)数据传输对象
 ```
+
+#### 4.#{}与${}的区别
+```
+#{}：是以预编译(PrepareStatement)的形式，将参数设置到sql语句中，可以防止sql注入；
+${}：将参数值直接拼接在sql语句中，会有安全问题；
+一般情况下，我们取参数值都应该使用#{}；
+在原生jdbc不支持占位符的地方，就可以使用${}进行取值：
+比如按照年份进行分表时的查询 select * from ${year}_salary where ... 。
+```
+
+#### 5.#{}的更多用法
+```
+1.使用#{}对参数进行取值时，可以添加一些约束或规则：javaType、jdbcType、mode(存储过程)、numericScale、resultMap、
+typeHandler、jdbcTypeName、expression(未来准备支持的功能)等。
+2.jdbcType通常需要在某些情况下被设置：在数据为null时，有些数据库可能无法识别mybatis对null值的默认处理，比如Oracle(报错)：
+  JdbcType OTHER：无效的类型——因为mybatis对所有的null都会映射为原生JDBC的OTHER类型，Oracle不能正确处理。
+3.由于全局配置中，jdbcTypeForNull=OTHER, Oracle不支持。此问题有两种解决方法：
+  1).参数取值时，设置数据库映射类型：#{name, jdbcType=NULL};
+  2).修改全局配置为：jdbcTypeForNull=NULL.
+  <setting name="jdbcTypeForNull" value="NULL"/>
+```
+
+
