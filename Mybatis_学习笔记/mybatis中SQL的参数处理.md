@@ -30,3 +30,8 @@ mybatis不做特殊处理：
  对应的接口方法声明：
  public Bean getBeanByIdAndName(@Param("id")Integer id, @Param("name")String name)
 ```
+
+#### 3.多个参数——传入POJO或Map对象
+```
+SQL中获取传入参数值的方式：#{POJO的属性名或Map对象的key}
+```
