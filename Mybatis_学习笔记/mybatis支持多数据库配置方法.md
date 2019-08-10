@@ -11,7 +11,7 @@
 
 #### 2.在mybatis的SQL配置文件中为相应的SQL语句添加databaseId属性即可
 ```
-<select id="selectByKey" resultType="结果类型全类名" databaseId="mysql">
+<select id="selectByKey" resultType="结果类型全类名" parameterType="参数类型全类名：该属性可以省略" databaseId="mysql">
    select * from emp where id = #{id}
 </select>
 ```
