@@ -165,7 +165,7 @@ EmployeeMapper.xml文件：
    将多个值封装成map格式即可：column="{key1=column1,key2=column2,...}"
    如上例还可以写成：cloumn="{deptId=id}",其中deptId是方法形参的名称，id是列名，
    表示将第一次查询出的“id”列的值赋值给该查询方法参数中的名称为deptId的参数
-// ※如何给collection 与 association标签的 fetchType 属性
+// ※collection 与 association标签的 fetchType 属性
    fetchType="lazy":表示使用延迟加载，默认值
    fetchType="eager":表示不使用延迟加载，立即加载
    
@@ -176,7 +176,34 @@ EmployeeMapper.xml文件：
 </select>
 ```
 
+#### 5.resultMap中的 discriminator 标签
+```
+discriminator：鉴别器，mybatis可以使用该标签判断某列的值，然后根据不同的列值改变封装行为
 
+需求：封装Employee
+    如果查出来的是女生，就查询其部门信息，否则不查询；
+    如果是男生，把last_name列的值赋给email属性
+<resultMap type="com.it.Employee" id="MyEmp">
+   <id column="id" property="id"/>
+   <result column="last_name" property="lastName"/>
+   <result column="email" property="email"/>
+   <result column="gender" property="gender"/>
+   // column:指定要进行判定的列名
+   // javaType:列值所对应的java类型
+   <discriminator javaType="string" column="gender">
+       <case value="0" resultType="com.it.Employee">
+           <association property="dept" select="com.it.DepartmentMapper.getDeptById" column="did"> 
+           </association> 
+       </case>
+       <case value="1" resultType="com.it.Employee">  // resultType:指定封装结果的类型，或者使用resultMap，不能缺省
+           <id column="id" property="id"/>
+           <result column="last_name" property="lastName"/>
+           <result column="last_name" property="email"/>
+           <result column="gender" property="gender"/> 
+       </case>
+   </discriminator>
+</resultMap>
+```
 
 
 
