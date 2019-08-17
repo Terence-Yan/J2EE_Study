@@ -85,6 +85,96 @@ sql语句的声明：
     <setting name="aggressiveLazyLoading" value="false"/>
 ```
 
+#### 4.resultMap中的collection标签
+```
+public class Department{
+    private Integer id;
+    private String deptName;
+    private List<Employee> emps;
+    ...
+}
+
+public interface DepartmentMapper{
+    public Department getDeptById(Integer id);
+    ...
+}
+
+需求：查询部门的时候将其所有的员工信息也查询出来
+DepartmentMapper.xml文件:
+...
+// collection嵌套结果集的方式，定义关联的集合类型元素的封装规则
+<resultMap type="com.it.Department" id="MyDept">
+   <id column="did" property="id"/>
+   <result column="dept_name" property="deptName"/>
+   // collection:定义集合类型属性的封装规则
+   // ofType:定义集合中元素的类型
+   <collection property="emps" ofType="com.it.Employee">  
+       // 定义集合中元素的封装规则
+       <id column="eid" property="id"/>
+       <result column="last_name" property="lastName"/>
+       <result column="email" property="email"/>
+       <result column="gender" property="gender"/>
+   </collection>  
+</resultMap>
+
+<select id="getDeptById" resultMap="MyDept">
+   select d.id did, d.dept_name dept_name, 
+          e.id eid, e.last_name last_name, e.email email, e.gender gender
+   from tbl_dept d
+   left join tbl_emp e
+   on d.id = e.d_id
+   where id=#{id}
+</select>
+
+// 方式二：分步查询
+
+public interface DepartmentMapper{
+    public Department getDeptByIdInStep(Integer id);
+    ...
+}
+
+public interface EmployeeMapper{
+    public List<Employee> getEmpsByDeptId(Integer deptId);
+    ...
+}
+
+EmployeeMapper.xml文件：
+<select id="getEmpsByDeptId" resultType="com.it.Employee">
+   select *
+   from tbl_emp
+   where d_id=#{deptId}
+</select>
+
+<resultMap type="com.it.Department" id="MyDeptInStep">
+   <id column="id" property="id"/>
+   <result column="dept_name" property="deptName"/>
+   // collection:定义集合类型属性的封装规则
+   // ofType:定义集合中元素的类型
+   // column:指明将(第一次查询出的)哪一列的值传给该查询方法
+   <collection property="emps" select="com.it.dao.EmployeeMapper.getEmpsByDeptId" 
+               cloumn="id" fetchType="eager">  
+       // 定义集合中元素的封装规则
+       <id column="eid" property="id"/>
+       <result column="last_name" property="lastName"/>
+       <result column="email" property="email"/>
+       <result column="gender" property="gender"/>
+   </collection>  
+</resultMap>
+
+// ※如何给collection 与 association标签的cloumn属性传递多个值
+   将多个值封装成map格式即可：column="{key1=column1,key2=column2,...}"
+   如上例还可以写成：cloumn="{deptId=id}",其中deptId是方法形参的名称，id是列名，
+   表示将第一次查询出的“id”列的值赋值给该查询方法参数中的名称为deptId的参数
+// ※如何给collection 与 association标签的 fetchType 属性
+   fetchType="lazy":表示使用延迟加载，默认值
+   fetchType="eager":表示不使用延迟加载，立即加载
+   
+<select id="getDeptByIdInStep" resultMap="MyDeptInStep">
+   select id, dept_name
+   from tbl_dept
+   where id=#{id}
+</select>
+```
 
 
 
