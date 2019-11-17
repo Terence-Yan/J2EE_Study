@@ -12,6 +12,8 @@
 
 ##### 7.简述强引用、软引用、弱引用与虚引用的含义。
 
+###### 参考文章
+* <a href="https://mp.weixin.qq.com/s/p3Z-iqDCXCiVbf4r5Y_FCA" target="_blank">引用</a>
 ##### 8.简述Arrays.sort的实现原理。
 
 ##### 9.简述LinkedHashMap的用法。
