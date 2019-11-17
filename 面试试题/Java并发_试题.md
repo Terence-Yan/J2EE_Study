@@ -1,7 +1,13 @@
+#### Java内存模型(JMM)中与并发处理相关的三个特征：可见性，原子性，有序性(指令重排序问题)
+#### 线程安全(并发)与性能是一对矛盾的存在。
 ##### 1.简述synchronized的实现原理。
 
 ##### 2.简述volatile的实现原理。
-
+```
+关键字volatile是JVM提供的最轻量级的同步机制，但是它只能保证可见性与有序性，不能保证原子性。
+```
+###### 参看文章
+* <a href="https://mp.weixin.qq.com/s/nzJdqJkXl1Dj4-JNzJHGEQ" target="_blank">既生synchronized，何生volatile？！</a>
 ##### 3.Java的信号灯。
 
 ##### 4.synchronized修饰静态方法与普通方法的区别。
