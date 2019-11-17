@@ -23,3 +23,21 @@
 ##### 12.wait和sleep的区别。
 
 ##### 13.数组在内存中如何分配。
+
+##### 14.Void 与 void的区别。
+```
+1.Void是一个不能被继承不能被实例化的类,是void关键字在类层面上的表示；
+2.方法返回值声明为Void,必须以null作为返回值：
+    private static Void outputWord(){
+        System.out.println("Hello World!");
+        return null;
+    }
+3.Void一般常用于反射场景下，获取方法的返回值类型。
+4.void是Java语言的一个关键字，用于方法返回值的声明，表示该方法无返回值。在语法上，可以以一个return语句结束方法执行并返回:
+    private static void printName(Person p){
+        if(null == p){
+            return;
+        }
+        System.out.println(p.getName());
+    }
+```
