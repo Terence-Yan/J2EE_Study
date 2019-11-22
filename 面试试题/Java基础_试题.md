@@ -38,15 +38,15 @@ Java语言中引入了这四种引用。
 ##### 11.简述异常分类以及相应的处理机制。
 
 ##### 12.wait和sleep的区别。
-1.##wait是Object类的方法，而sleep是Thread类的方法。##
-2.##wait方法会释放持有的锁资源，而sleep方法不会释放。##
+* **wait是Object类的方法，而sleep是Thread类的方法。**
+* **wait方法会释放持有的锁资源，而sleep方法不会释放。**
 ```
 wait()方法源码中的注解：
 ...The thread releases ownership of this monitor...
 sleep()方法源码中的注解：
 ...The thread does not lose ownership of any monitors...
 ```
-3.##wait方法必须与synchronized代码块同时使用，且需要使用notify方法进行“唤醒”。##
+* **wait方法必须与synchronized代码块同时使用，且需要使用notify方法进行“唤醒”。**
 ```
 ...The current thread must own this object's monitor...
      synchronized (obj) {
