@@ -46,7 +46,7 @@ wait()方法源码中的注解：
 sleep()方法源码中的注解：
 ...The thread does not lose ownership of any monitors...
 ```
-* **wait方法必须与synchronized代码块同时使用，且需要使用notify方法进行“唤醒”。**
+* **wait方法必须与synchronized代码块同时使用(该对象来充当锁)，且需要使用notify方法进行“唤醒”。**
 ```
 ...The current thread must own this object's monitor...
      synchronized (obj) {
@@ -55,6 +55,7 @@ sleep()方法源码中的注解：
 ```
 
 ##### 13.数组在内存中如何分配。
+* 数组在内存中会被分配一块连续的内存空间。
 
 ##### 14.Void 与 void的区别。
 ```
