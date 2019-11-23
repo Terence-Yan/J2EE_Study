@@ -73,6 +73,8 @@ sleep()方法源码中的注解：
         obj.wait();
      }
 ```
+###### 参考文章
+* <a href="https://mp.weixin.qq.com/s/gvaksKy2ss90bsybCnajpQ" target="_blank">sleep( )和 wait( )的这5个区别，你知道几个？</a>
 
 ##### 13.数组在内存中如何分配。
 * 数组在内存中会被分配一块连续的内存空间。
