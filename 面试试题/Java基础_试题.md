@@ -59,7 +59,7 @@ Java语言中引入了这四种引用。
 ```
 --Throwable
      --Exception
-         --RuntimeException(unchecked exceptions，非检查异常，编码非必需处理(catch或throw)的异常)
+         --RuntimeException(unchecked exceptions，非检查异常，编码时非必需处理(即不用显式catch或throw)的异常)
      --Error
 ```
 
