@@ -41,7 +41,7 @@
 ##### 18.ThreadLocal的实现原理，使用时有哪些需要注意的问题？
 
 ##### 19.CountDownLacth 和 CyclicBarrier的用法，以及相互之间的差别？
-* CountDownLacth是一个同步(线程安全的)计数器，是以“观察者模式”在线程之间进行状态信息的通信.它的含义是：
+* CountDownLacth是一个同步(线程安全的)状态指示器，采用计数器的方式实现，是以“观察者模式”在线程之间进行状态信息的通信.它的含义是：
 ```
 源码注释：
 A synchronization aid that allows one or more threads to wait until a set of operations 
