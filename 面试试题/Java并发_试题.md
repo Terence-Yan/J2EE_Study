@@ -41,6 +41,17 @@
 ##### 18.ThreadLocal的实现原理，使用时有哪些需要注意的问题？
 
 ##### 19.CountDownLacth 和 CyclicBarrier的用法，以及相互之间的差别？
+* CountDownLacth是一个同步(线程安全的)计数器，是以“观察者模式”在线程之间进行状态信息的通信.它的含义是：
+```
+源码注释：
+A synchronization aid that allows one or more threads to wait until a set of operations 
+being performed in other threads completes.
+它可以作为一个多线程任务下的“状态标识符”来使用，主要的应用场景有以下两种模式：
+1.假如有事务T需要分为A,B,C三个有序步骤来完成，而步骤B又是一个执行相同子任务的批量操作，此时可以通过使用CountDownLacth对象(countDown方法)，
+让步骤B采用并发进行处理，而执行步骤C的线程通过调用await方法就可以保证只有在步骤B的所有并发任务执行完之后才会执行。
+2.假如有事务T可以分为 N 个子任务来完成，这 N 个子任务又可以分为有序的三段来执行--“1,(2,3,...,N-1),N”，其中中间的多个子任务没有顺序要求，
+此时可以使用CountDownLacth对象，对“(2,3,...,N-1),N”这些子任务采用并发处理(前面的子任务使用countDown方法，最后一个使用await方法即可)。
+```
 
 ##### 20.LockSupport工具
 
