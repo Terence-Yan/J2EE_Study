@@ -7,7 +7,7 @@ LinkedList：内部是通过一个链表实现的。
 * Set中的元素无序且不可重复，常见的实现类有：
 ```
 HashSet: 内部是通过一个HashMap对象实现的；
-TreeSet：内部是通过
+TreeSet：内部是通过一个SortedMap(Map + Comparator)对象实现的，该集合中元素的顺序是通过比较器定义的.
 ```
 
 ##### 2.HashSet是如何保证元素的互异性？
