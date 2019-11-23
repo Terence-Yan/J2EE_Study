@@ -1,6 +1,26 @@
 ##### 1.List和Set的区别。
+* List中的元素有序且可重复，常用的实现类有：
+```
+ArrayList: 内部是通过一个数组实现的；
+LinkedList：内部是通过一个链表实现的。
+```
+* Set中的元素无序且不可重复，常见的实现类有：
+```
+HashSet: 内部是通过一个HashMap对象实现的；
+TreeSet：内部是通过
+```
 
 ##### 2.HashSet是如何保证元素的互异性？
+HashSet的内部使用的是一个HashMap实例存放元素的，元素被存放在HashMap的键中，所以它是通过HashMap键值的唯一特性来保证元素的互异性的。
+```
+HashSet类的部分源码：
+...
+private transient HashMap<E,Object> map;
+...
+public boolean add(E e) {
+    return map.put(e, PRESENT)==null;
+}    
+```
 
 ##### 3.HashMap是线程安全的吗？请简述理由。
 
