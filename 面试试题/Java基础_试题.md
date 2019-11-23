@@ -56,6 +56,12 @@ Java语言中引入了这四种引用。
 ##### 10.简述colneable接口的实现原理。
 
 ##### 11.简述异常分类以及相应的处理机制。
+```
+--Throwable
+     --Exception
+         --RuntimeException(unchecked exceptions，非检查异常，编码非必需处理(catch或throw)的异常)
+     --Error
+```
 
 ##### 12.wait和sleep的区别。
 * **wait是Object类的方法，而sleep是Thread类的方法。**
@@ -95,4 +101,21 @@ sleep()方法源码中的注解：
         }
         System.out.println(p.getName());
     }
+```
+
+##### 15.说说你对static的理解。
+
+##### 16.简述集合框架类的层次关系。
+```
+--Collection
+     --List(ArrayList、LinkedList、Vector)
+     --Set(HashSet)
+        --SortedSet(TreeSet)
+     --Queue
+        --PriorityQueue
+       
+--Map
+     --AbstractMap(HashMap、LinkedHashMap)
+     --SortedMap(TreeMap)
+     --Hashtable
 ```
