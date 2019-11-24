@@ -66,6 +66,20 @@ countDown方法，最后一个使用await方法即可)。
 ##### 20.LockSupport工具
 
 ##### 21.Condition接口及其实现原理。
+```
+Condition是一个集合了线程间通行的锁方法的接口。其中的方法(await、signal...)在效果上等同于Object类
+中对应的相应方法(wait、notify...)。
+简单地讲，synchronized + Object.wait() 等价于 Lock + Condition。
+参见源码中注释：
+ * {@code Condition} factors out the {@code Object} monitor
+ * methods ({@link Object#wait() wait}, {@link Object#notify notify}
+ * and {@link Object#notifyAll notifyAll}) into distinct objects to
+ * give the effect of having multiple wait-sets per object, by
+ * combining them with the use of arbitrary {@link Lock} implementations.
+ * Where a {@code Lock} replaces the use of {@code synchronized} methods
+ * and statements, a {@code Condition} replaces the use of the Object
+ * monitor methods.
+```
 
 ##### 22.简述你对Fork/Join框架的理解。
 
