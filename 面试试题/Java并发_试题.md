@@ -55,6 +55,12 @@ being performed in other threads completes.
 多个子任务没有顺序要求，此时可以使用CountDownLacth对象，对“(2,3,...,N-1),N”这些子任务采用并发处理(前面的子任务使用
 countDown方法，最后一个使用await方法即可)。
 ```
+* CountDownLacth 与 CyclicBarrier的作用是一样的，都是一种用来保持多线程任务完成状态一致性检验的协调器。不同的是：
+```
+1.CountDownLacth对象只能使用一次，CyclicBarrier可以循环重复使用；
+2.CountDownLacth的结果需要额外的线程来判断，而CyclicBarrier不需要，它是通过多线程之间相互“通信”来进行
+完成状态的确认与协调的。
+```
 
 ##### 20.LockSupport工具
 
