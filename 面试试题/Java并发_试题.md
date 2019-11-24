@@ -8,7 +8,8 @@
 ```
 ###### 参看文章
 * <a href="https://mp.weixin.qq.com/s/nzJdqJkXl1Dj4-JNzJHGEQ" target="_blank">既生synchronized，何生volatile？！</a>
-##### 3.Java的信号灯。
+##### 3.谈谈对Java的Semaphore(信号灯、信号量)的理解。
+* Semaphore是一个用来控制访问(资源)的线程的数量的协调器。
 
 ##### 4.synchronized修饰静态方法与普通方法的区别。
 
