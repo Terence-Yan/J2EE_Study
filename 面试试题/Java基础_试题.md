@@ -119,3 +119,32 @@ sleep()方法源码中的注解：
      --SortedMap(TreeMap)
      --Hashtable
 ```
+
+##### 17.谈谈hashcode()与equals()的关系。
+```
+1.hashcode()是用来计算给定参数的hash值，主要用于hash表中数组索引的计算;
+2.equals()是用来比较两个引用变量(对象)的值是否相等。
+3.本来这两个方法之间是没有多少关系的，将它们联系在一起的是采用数组+链表(或红黑树等)作为元素存储数据结构的HashMap一类的集合类。
+其特点是作为一级存储结构的数组的分配方式(即如何获取数组的索引)是采用hash函数进行的。如果一个自定义的数据对象，有被用作HashMap
+类的key值可能，则它必须重写hashcode()方法，否则在HashMap类型的集合存取元素时可能会出现与预期不一致的现象，而又因为在数组的同
+一个位置上可能不止存放了一个元素(当元素多余一个时，会采用链表等数据结构作为二级存储结构存放元素，这是我们也称这个二级存储单元为桶)，
+此时要在桶中查找指定元素，就需要使用equals方法进行逐一比较了。因此，当一个自定义的类的实例有作为HashMap类型集合的key可能时，
+在定义此类时，就必须同时重写hashcode()与equals()。
+4.(1).hash值相同的两个对象，不一定相等；(2).相同的两个对象，其hash值一定相等。
+```
+###### 参考文章
+* <a href="https://mp.weixin.qq.com/s/dnyEc6-WWOm_Ijg7MfSmWw" target="_blank">基础：为什么要重写 hashcode 和 equals 方法？</a>
+
+##### 18.谈谈NoSuchMethodError的常见原因及解决方法。
+###### 参考文章
+* <a href="https://mp.weixin.qq.com/s/IMfWFxAyWwOxvU5MUYPTtA" target="_blank">NoSuchMethodError 常见原因及解决方法</a>
+
+
+
+
+
+
+
+
+
+
