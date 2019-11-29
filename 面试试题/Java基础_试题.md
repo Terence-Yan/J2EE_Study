@@ -72,7 +72,7 @@ wait()方法源码中的注解：
 sleep()方法源码中的注解：
 ...The thread does not lose ownership of any monitors...
 ```
-* **wait方法必须在synchronized同步代码块或同步方法中使用(即必须该对象来充当锁)，且需要使用notify方法进行“唤醒”，而sleep在达到“休眠时间”后会继续执行。**
+* **wait方法必须在synchronized同步代码块或同步方法中使用(即必须持有锁)，且需要使用notify方法进行“唤醒”，而sleep在达到“休眠时间”后会继续执行。**
 ```
 ...The current thread must own this object's monitor...
      synchronized (obj) {
