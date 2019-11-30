@@ -233,7 +233,15 @@ Person{name='Tom', age=25}”
 3.return操作不是一个原子操作。
 ```
 
-
+##### 20.简单介绍一下Arrays、Collections和Objects类。
+```
+Arrays:数组的工具类，其公共的静态工具方法的参数都是Java中的数组。
+Collections：集合的工具类，其公共的静态工具方法的参数都是List、Set和Collection类型的。
+Objects：Object类型的工具类，其公共的静态工具方法的参数都是Object类型，主要包括一些公共的顶级方法，如：
+         equals：比较两个对象是否相等，封装了判空处理，以及比较效率的提升——对于两个对象直接先比较地址；
+	 hashCode：获取给定对象的hash值，封装了判空处理；
+	 toString：返回给定对象的字符串表达式，并且可以设置null时的默认值。
+```
 
 
 
