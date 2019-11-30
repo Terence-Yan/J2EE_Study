@@ -139,7 +139,99 @@ sleep()方法源码中的注解：
 ###### 参考文章
 * <a href="https://mp.weixin.qq.com/s/IMfWFxAyWwOxvU5MUYPTtA" target="_blank">NoSuchMethodError 常见原因及解决方法</a>
 
+##### 19.关键字finally相关问题。
+```
+1.finally块中的代码一定会执行吗？
+答：不一定，只有当执行流进入其对应的try块时，finally块中的代码才一定会执行。如：
+    public static void main(String[] args) {
+        try{
+            System.out.println("第一个try块...");
+            System.out.println("" + (1 / 0));
+        } catch (NullPointerException e) {
+            System.out.println("第一个try块对应的catch块...");
+        }
 
+        try{
+            System.out.println("第二个try块...");
+        } finally {
+            System.out.println("finally块执行了...");
+        }
+    }
+的执行结果是：
+“第一个try块...
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at com.sm.test.FinallyTest.main(FinallyTest.java:7)”
+    
+2.对try块中包含return语句的finally块，finally中的代码是在return语句之前还是之后执行？
+答：在return语句执行之后，该方法返回之前执行。
+如：
+   例1：
+   public static void main(String[] args) {
+        System.out.println(test());
+    }
+   private static String test(){
+        String result = "初始值";
+        try{
+            System.out.println("第一个try块...");
+            result = "return返回的值";
+            return result;
+        } finally {
+            System.out.println("finally块执行了...");
+            result = "finally返回的值";
+            System.out.println("返回值在finally块中被修改了...");
+        }
+    }
+上面代码的执行结果是：
+“第一个try块...
+finally块执行了...
+返回值在finally块中被修改了...
+return返回的值”
+
+   例2：
+   public static void main(String[] args) {
+        System.out.println(test());
+    }
+   private static Person test(){
+        Person p = null;
+        try{
+            System.out.println("第一个try块...");
+            p = new Person("Tom", 20);
+            return p;
+        } finally {
+            System.out.println("finally块执行了...");
+            p.setAge(25);
+            System.out.println("返回值在finally块中被修改了...");
+        }
+    }......
+
+class Person{
+    private String name;
+    private int age;
+    public Person(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    // 省略了setter与getter方法
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }  
+}
+上面代码的执行结果是：
+“第一个try块...
+finally块执行了...
+返回值在finally块中被修改了...
+Person{name='Tom', age=25}”
+
+通过上面两个例子的分析可以得出：
+1.一个方法的栈中有多个return语句时，只会执行第一个(这个也就解释了“为什么try块与finally块中都
+含有return语句时，try块中的返回值会被覆盖”);
+2.对于返回值是引用类型的，返回的是该引用的地址.
+3.return操作不是一个原子操作。
+```
 
 
 
