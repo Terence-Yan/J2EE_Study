@@ -119,5 +119,8 @@ ________________________________________________________
 AtomicStampedReference是一个带有“时间戳”标记的原子引用类，可以避免CAS操作产生的ABA问题。
 ```
 
+##### 28.谈谈你对StampedLock的理解。
+###### 参看文章
+* <a href="http://ifeve.com/java-8-stampedlocks-vs-readwritelocks-and-synchronized/" target="_blank">Java 8：StampedLock、ReadWriteLock以及synchronized的比较</a>
 
 
