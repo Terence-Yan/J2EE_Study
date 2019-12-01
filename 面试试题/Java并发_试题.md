@@ -13,7 +13,7 @@
 
 ##### 4.synchronized修饰静态方法与普通方法的区别。
 ```
-synchronized修饰静态方法时，持有的是使用当前类对象作为资源的锁(A.class);
+synchronized修饰静态方法时，持有的是使用当前类对象作为资源的锁(如 A.class);
 synchronized修饰普通方法时，持有的是this锁。
 ```
 
