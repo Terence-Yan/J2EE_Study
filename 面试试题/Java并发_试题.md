@@ -67,7 +67,7 @@ countDown方法，最后一个使用await方法即可)。
 
 ##### 21.Condition接口及其实现原理。
 ```
-Condition是一个集合了线程间通行的锁方法的接口。其中的方法(await、signal...)在效果上等同于Object类
+Condition是一个集合了线程间通信的锁方法的接口。其中的方法(await、signal...)在效果上等同于Object类
 中对应的相应方法(wait、notify...)。
 简单地讲，synchronized + Object.wait() 等价于 Lock + Condition。
 参见源码中注释：
