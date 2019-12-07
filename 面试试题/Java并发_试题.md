@@ -124,7 +124,7 @@ AtomicStampedReference是一个带有“时间戳”标记的原子引用类，�
 * <a href="http://ifeve.com/java-8-stampedlocks-vs-readwritelocks-and-synchronized/" target="_blank">Java 8：StampedLock、ReadWriteLock以及synchronized的比较</a>
 
 ##### 29.Java中锁的分类有哪些？
-* 根据线程是否要锁住同步资源，可分为：悲观锁(锁住)与乐观锁。
+* 根据线程是否要锁住同步资源，可分为：悲观锁(锁住)与乐观锁(不锁住)。
 * 根据锁住同步资源失败时，线程是否要阻塞，可分为：阻塞与不阻塞(自旋锁、适应性自旋锁)。
 * 根据多个线程竞争同步资源的流程细节的不同，可分为：
 ```
