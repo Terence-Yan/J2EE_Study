@@ -154,7 +154,11 @@ AtomicStampedReference是一个带有“时间戳”标记的原子引用类，�
 ```
 ReentrantLock和synchronized都是可重入锁。
 ```
-* 根据多个线程是否能共享同一把锁，可分为：共享锁(能)与排他锁(不能)。
+* 根据多个线程是否能共享同一把锁，可分为：共享锁(能)与排它锁(不能)。
+```
+(1).JDK中的synchronized和JUC中Lock的实现类都是排它锁。获得排它锁的线程即能读数据又能修改数据。
+(2).共享锁是指该锁可被多个线程所持有。获得共享锁的线程只能读数据，不能修改数据。
+```
 
 ###### 参看文章
 * <a href="https://mp.weixin.qq.com/s/E2fOUHOabm10k_EVugX08g" target="_blank">不可不说的Java“锁”事</a>
