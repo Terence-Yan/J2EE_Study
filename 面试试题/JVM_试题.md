@@ -67,9 +67,15 @@ Java堆分为**新生代**与**老年代**，这样就可以根据各个年代�
 
 ##### 4.垃圾收集器有哪些？
 
+##### 5.谈谈Java应用的GC优化
 
+###### 参考文章
+* <a href="https://mp.weixin.qq.com/s/t1Cx1n6irN1RWG8HQyHU2w" target="_blank">从实际案例聊聊Java应用的GC优化</a>
 
+##### 6.系统CPU飙高和GC频繁，如何排查？
 
+###### 参考文章
+* <a href="https://mp.weixin.qq.com/s/xvH9tsU_n2h-tksQ3Gc1Wg" target="_blank">必备面试题：系统CPU飙高和GC频繁，如何排查？</a>
 
 
 
