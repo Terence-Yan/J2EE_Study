@@ -26,3 +26,12 @@
 ```
 ###### 参考文章
 * <a href="https://mp.weixin.qq.com/s/VLgSGx8tWYR2a_0IqRCyig" target="_blank">写了这么多年代码，你真的了解SOLID吗？</a>
+
+#### 2.编码优秀实践
+
+###### 参考文章
+* <a href="https://mp.weixin.qq.com/s/FQisGVHFvoKQG26jBPeatw" target="_blank">可以提高千倍效率的Java代码小技巧</a>
+
+
+
+
