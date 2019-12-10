@@ -42,3 +42,42 @@ Full GC
 [Metaspace: 20856K->20856K(1069056K)], 0.1216713 secs]
 [Times: user=0.44 sys=0.02, real=0.12 secs] 
 ```
+
+###### 参考文章
+* <a href="https://mp.weixin.qq.com/s/cwJdDshVrQKd1SRMJNlXlg" target="_blank">科普：教你如何看懂 JavaGC 日志</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
