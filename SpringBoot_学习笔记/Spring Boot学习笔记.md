@@ -1,4 +1,4 @@
-#### 1.Spring Boot的主导思想——约定优于配置
+#### 1.Spring Boot的主导思想——约定优于配置(自动配置)、注解驱动开发、模块化(各种starter)
 
 #### 2.Spring Boot的自定义配置文件
 * src/main/resources/application.properties
@@ -17,4 +17,16 @@ spring.mvc.view.prefix=/WEB-INF/jsp/
 spring.mvc.view.suffix=.jsp
 ```
 
-#### 5.
+#### 5.Spring Boot的优点
+* 快速创建独立运行的spring项目以及与主流框架集成
+* 使用嵌入式的Servlet容器，应用无须打成WAR包
+* starters(启动器)自动依赖与版本控制
+* 大量的自动配置，简化开发，也可修改默认值
+* 无须配置XML，无须代码生成，开箱即用
+* 准生产环境的运行时应用监控
+* 与云计算的天然集成
+
+#### 6.什么是微服务
+
+###### 参考文章
+* <a href="https://martinfowler.com/microservices/" target="_blank">Microservices Guide</a>
