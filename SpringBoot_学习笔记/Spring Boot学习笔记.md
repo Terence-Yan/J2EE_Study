@@ -30,3 +30,16 @@ spring.mvc.view.suffix=.jsp
 
 ###### 参考文章
 * <a href="https://martinfowler.com/microservices/" target="_blank">Microservices Guide</a>
+
+#### 7.SpringBoot项目的构建与部署插件
+```
+<build>
+    <plugins>
+        <plugin>
+            <groupId>pl.project13.maven</groupId>
+            <artifactId>git-commit-id-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+```
+* <a href="https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/reference/html/howto.html#howto-build" target="_blank">部署插件参考文档</a>
