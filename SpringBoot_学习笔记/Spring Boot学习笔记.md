@@ -36,8 +36,8 @@ spring.mvc.view.suffix=.jsp
 <build>
     <plugins>
         <plugin>
-            <groupId>pl.project13.maven</groupId>
-            <artifactId>git-commit-id-plugin</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
         </plugin>
     </plugins>
 </build>
