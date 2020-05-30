@@ -69,14 +69,14 @@
         ...
      }
 (3). 由于 insertRoleList 会调用 insertRole，而 insertRole 标注了 REQUIRES_NEW，所以每次调用都会产生新的事务：
-     insertRoleList开启事务 -> insertRole事务1(提交或回滚) -> insertRole事务2(提交或回滚) -> ... 
-     -> insertRoleList提交(回滚)事务。
+         insertRoleList开启事务 -> insertRole事务1(提交或回滚) -> insertRole事务2(提交或回滚) -> ... 
+         -> insertRoleList提交(回滚)事务。
      数据库中的结果：insert成功的事务被提交，insert异常的事务被回滚，只有insert成功了的数据被持久化到了数据库。亦即
      在一个数据库批处理任务中，不是所有的数据都被持久化到了数据库。
 (4). 由于 insertRoleList 会调用 insertRole，而如果 insertRole 标注了 REQUIRED，则每次调用都不会产生新的事务，而是
      沿用 insertRoleList 的事务：
-     insertRoleList开启事务 -> insertRole任务1加入当前事务 -> insertRole任务2加入当前事务 -> ... 
-     -> insertRole任务n加入当前事务(异常则立即回滚当前事务) -> insertRoleList提交(回滚)事务。
+         insertRoleList开启事务 -> insertRole任务1加入当前事务 -> insertRole任务2加入当前事务 -> ... 
+         -> insertRole任务n加入当前事务(异常则立即回滚当前事务) -> insertRoleList提交(回滚)事务。
      数据库中的结果：insert的数据要么全部持久化到了数据库，要么数据库没有任何新增数据。即insert操作要么全部成功，要么全部失败。
 ```
 
