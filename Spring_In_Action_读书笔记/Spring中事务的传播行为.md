@@ -30,8 +30,89 @@
 (2).当数据库不支持保存点技术时，NESTED 与 REQUIRES_NEW 策略相同。   
 ```
 
+#### 4.REQUIRED、REQUIRES_NEW 的含义
+```
+举例说明：
+(1). public class RoleListImpl {
+        
+        ...
+        @Autowired
+        private RoleService roleService;
+        ...
+        
+        @Transactional(propagation = Propagation.REQUIRED)
+        public int insertRoleList(List<Role> roles){
+            int count == 0;
+            for(Role role : roles){
+                try{
+                    count += roleService.insertRole(role);
+                } catch (Exception e) {
+                    log.error(e);
+                }
+            }
+            return count;
+        }
+        ...
+     }
+(2). public class RoleServiceImpl implements RoleService {
+        
+        ...
+        @Autowired
+        private RoleMapper roleMapper;
+        ...
+        
+        @Transactional(propagation = Propagation.REQUIRES_NEW)
+        @Override
+        public int insertRole(Role role) {
+            return roleMapper.insertRole(role);
+        }
+        ...
+     }
+(3). 由于 insertRoleList 会调用 insertRole，而 insertRole 标注了 REQUIRES_NEW，所以每次调用都会产生新的事务：
+     insertRoleList开启事务 -> insertRole事务1(提交或回滚) -> insertRole事务2(提交或回滚) -> ... 
+     -> insertRoleList提交(回滚)事务。
+     数据库中的结果：insert成功的事务被提交，insert异常的事务被回滚，只有insert成功了的数据被持久化到了数据库。亦即
+     在一个数据库批处理任务中，不是所有的数据都被持久化到了数据库。
+(4). 由于 insertRoleList 会调用 insertRole，而如果 insertRole 标注了 REQUIRED，则每次调用都不会产生新的事务，而是
+     沿用 insertRoleList 的事务：
+     insertRoleList开启事务 -> insertRole任务1加入当前事务 -> insertRole任务2加入当前事务 -> ... 
+     -> insertRole任务n加入当前事务(异常则立即回滚当前事务) -> insertRoleList提交(回滚)事务。
+     数据库中的结果：insert的数据要么全部持久化到了数据库，要么数据库没有任何新增数据。即insert操作要么全部成功，要么全部失败。
+```
 
-
+#### 5.@Transactional的自调用失效问题
+```
+有时候被调用方法配置了@Transactional注解，却没有生效。造成失效的主要原因是：注解@Transactional的底层实现是 Spring AOP 技术，
+而Spring AOP 技术使用的是动态代理。这就意味着对于静态(static)方法和非public方法，注解@Transactional是无效的。还有一种情形
+更为隐秘，而且在使用的过程中也极容易出现——自调用。所谓自调用，就是一个对象的一个方法去调用自身的另一个方法的行为。如：
+     public class RoleListImpl {
+        
+        ...
+        @Autowired
+        private RoleMapper roleMapper;
+        ...
+        
+        @Transactional(propagation = Propagation.REQUIRED)
+        public int insertRoleList(List<Role> roles){
+            int count == 0;
+            for(Role role : roles){
+                try{
+                    // 调用自身的方法，产生自调用问题，insertRole的@Transactional注解失效
+                    count += insertRole(role);
+                } catch (Exception e) {
+                    log.error(e);
+                }
+            }
+            return count;
+        }
+        
+        @Transactional(propagation = Propagation.REQUIRES_NEW)
+        public int insertRole(Role role) {
+            return roleMapper.insertRole(role);
+        }
+        ...
+     }
+```
 
 
 
