@@ -25,7 +25,7 @@ statically from the source with nginx by using --with-pcre=<path> option.
 ```
 1.下载PCRE安装包：http://www.zlib.net/
     wget http://prdownloads.sourceforge.net/libpng/zlib-1.2.11.tar.gz?download
-2.解压：tar -zxvf zlib-1.2.11.tar.gz\?download -C zlib-1.2.11
+2.解压：tar -zxvf zlib-1.2.11.tar.gz\?download
 3.进入解压后目录，执行：./configure
    注：./configure --prefix=/usr/local/3rdlib/zlib-1.2.11/data/zlib-1.2.11(此处尽量不要使用指定安装目录的方式安装)
 4.编译：make
